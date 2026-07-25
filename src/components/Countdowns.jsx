@@ -1,145 +1,141 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedCounter from './AnimatedCounter';
-import { Cpu, Globe } from 'lucide-react';
-import Confetti from 'react-confetti';
-import { useWindowSize } from 'react-use';
-
-// Set to hit zero in 15 seconds for testing purposes
-const PRIMARY_DATE = new Date('2026-07-27T12:00:00+05:30').getTime();
-const SECONDARY_DATE = new Date('2026-08-03T12:00:00+05:30').getTime();
+import Starfield from './Starfield';
+import { PRIMARY_DATE, SECONDARY_DATE, TERTIARY_DATE } from '../constants';
 
 export default function Countdowns() {
   const [timeLeft1, setTimeLeft1] = useState(calculateTimeLeft(PRIMARY_DATE));
   const [timeLeft2, setTimeLeft2] = useState(calculateTimeLeft(SECONDARY_DATE));
-  
-  // Only render confetti on client
-  const [isClient, setIsClient] = useState(false);
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const [timeLeft3, setTimeLeft3] = useState(calculateTimeLeft(TERTIARY_DATE));
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft1(calculateTimeLeft(PRIMARY_DATE));
       setTimeLeft2(calculateTimeLeft(SECONDARY_DATE));
+      setTimeLeft3(calculateTimeLeft(TERTIARY_DATE));
     }, 1000);
     return () => clearInterval(timer);
   }, []);
 
-  const showConfetti = isClient && (timeLeft1.isFinished || timeLeft2.isFinished);
-
   return (
-    <section className="py-24 px-4 relative z-10 w-full max-w-6xl mx-auto">
-      {showConfetti && <ConfettiWrapper />}
-      <motion.div 
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex flex-col gap-8 w-full"
-      >
-        {/* Primary Countdown */}
-        <motion.div 
-          className="w-full glass-card rounded-2xl p-8 md:p-12 relative overflow-hidden group box-glow transition-all duration-500 hover:border-cyan-500/30 box-glow-hover"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-          
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-2 bg-cyan-500/10 rounded-lg border border-cyan-500/20">
-              <Cpu className="w-5 h-5 text-cyan-400" />
-            </div>
-            <h2 className="text-lg md:text-xl font-heading font-medium text-zinc-100 leading-tight">
-              System Initialization:<br/><span className="text-zinc-400">Club Reveal</span>
-            </h2>
-          </div>
+    <section className="py-24 px-4 relative z-10 w-full flex justify-center overflow-hidden min-h-screen items-center">
+      <Starfield />
+      <div className="w-full max-w-7xl relative z-10 flex flex-col items-center justify-center gap-32">
 
-          {timeLeft1.isFinished ? (
-            <FinishedState 
-              title="Welcome to STAR!" 
-              subtitle="The club has officially launched." 
-              colorClass="text-cyan-400" 
-            />
-          ) : (
-            <div className="flex justify-start gap-4 md:gap-8 flex-wrap">
+        {!timeLeft1.isFinished ? (
+          <motion.div
+            key="primary-active"
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="flex flex-col items-center gap-16 w-full"
+          >
+            <div className="text-center space-y-6 max-w-4xl px-4">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-zinc-200 to-cyan-200 uppercase tracking-widest md:tracking-[0.3em] drop-shadow-[0_0_15px_rgba(251,191,36,0.6)]">
+                THE CONSTELLATION
+              </h2>
+              <p className="text-amber-100/80 font-mono tracking-widest md:tracking-[0.6em] uppercase text-xs md:text-sm leading-relaxed">
+                GRAVITY PULLS US TOGETHER. THE CLUB FORMS SOON.
+              </p>
+            </div>
+
+            <div className="flex justify-center items-center gap-2 sm:gap-4 md:gap-12 flex-nowrap">
               <AnimatedCounter value={timeLeft1.days} label="Days" />
-              <div className="text-2xl md:text-5xl font-mono text-zinc-600 self-start mt-2 md:mt-4">:</div>
+              <div className="text-3xl md:text-7xl font-black font-heading text-amber-500/50 self-start mt-2 md:mt-4 animate-pulse drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]">:</div>
               <AnimatedCounter value={timeLeft1.hours} label="Hours" />
-              <div className="text-2xl md:text-5xl font-mono text-zinc-600 self-start mt-2 md:mt-4">:</div>
-              <AnimatedCounter value={timeLeft1.minutes} label="Minutes" />
-              <div className="text-2xl md:text-5xl font-mono text-zinc-600 self-start mt-2 md:mt-4">:</div>
-              <AnimatedCounter value={timeLeft1.seconds} label="Seconds" />
+              <div className="text-3xl md:text-7xl font-black font-heading text-amber-500/50 self-start mt-2 md:mt-4 animate-pulse drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]">:</div>
+              <AnimatedCounter value={timeLeft1.minutes} label="Mins" />
+              <div className="text-3xl md:text-7xl font-black font-heading text-amber-500/50 self-start mt-2 md:mt-4 animate-pulse drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]">:</div>
+              <AnimatedCounter value={timeLeft1.seconds} label="Secs" />
             </div>
-          )}
-        </motion.div>
-
-        {/* Secondary Countdown */}
-        <motion.div 
-          className="w-full glass-card rounded-2xl p-8 md:p-12 relative overflow-hidden group transition-all duration-500 hover:border-emerald-500/30 hover:shadow-[0_0_40px_rgba(16,185,129,0.15)]"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-          
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
-              <Globe className="w-5 h-5 text-emerald-400" />
+          </motion.div>
+        ) : !timeLeft2.isFinished ? (
+          <motion.div
+            key="secondary-active"
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="flex flex-col items-center gap-16 w-full"
+          >
+            <div className="text-center space-y-6 max-w-4xl px-4">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-zinc-200 to-amber-200 uppercase tracking-widest md:tracking-[0.3em] drop-shadow-[0_0_15px_rgba(34,211,238,0.6)]">
+                THE WORMHOLE
+              </h2>
+              <p className="text-cyan-100/80 font-mono tracking-widest md:tracking-[0.6em] uppercase text-xs md:text-sm leading-relaxed">
+                TRANSMITTING DATA ACROSS SPACE. THE WEBSITE PREPARES TO LAUNCH.
+              </p>
             </div>
-            <h3 className="text-lg md:text-xl font-heading font-medium text-zinc-100 leading-tight">
-              Platform Deployment:<br/><span className="text-zinc-400">Website Reveal</span>
-            </h3>
-          </div>
 
-          {timeLeft2.isFinished ? (
-            <FinishedState 
-              title="Platform Deployed!" 
-              subtitle="The website is now live." 
-              colorClass="text-emerald-400" 
-            />
-          ) : (
-            <div className="flex justify-start gap-3 md:gap-4 flex-wrap scale-90 origin-left">
+            <div className="flex justify-center items-center gap-2 sm:gap-4 md:gap-12 flex-nowrap">
               <AnimatedCounter value={timeLeft2.days} label="Days" />
-              <div className="text-xl md:text-3xl font-mono text-zinc-600 self-start mt-2">:</div>
+              <div className="text-3xl md:text-7xl font-black font-heading text-cyan-500/60 self-start mt-2 md:mt-4 animate-pulse drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">:</div>
               <AnimatedCounter value={timeLeft2.hours} label="Hours" />
-              <div className="text-xl md:text-3xl font-mono text-zinc-600 self-start mt-2">:</div>
+              <div className="text-3xl md:text-7xl font-black font-heading text-cyan-500/60 self-start mt-2 md:mt-4 animate-pulse drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">:</div>
               <AnimatedCounter value={timeLeft2.minutes} label="Mins" />
-              <div className="text-xl md:text-3xl font-mono text-zinc-600 self-start mt-2">:</div>
+              <div className="text-3xl md:text-7xl font-black font-heading text-cyan-500/60 self-start mt-2 md:mt-4 animate-pulse drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">:</div>
               <AnimatedCounter value={timeLeft2.seconds} label="Secs" />
             </div>
-          )}
-        </motion.div>
+          </motion.div>
+        ) : !timeLeft3.isFinished ? (
+          <motion.div
+            key="tertiary-active"
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="flex flex-col items-center gap-16 w-full"
+          >
+            <div className="text-center space-y-6 max-w-4xl px-4">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-zinc-200 to-indigo-300 uppercase tracking-widest md:tracking-[0.3em] drop-shadow-[0_0_15px_rgba(168,85,247,0.6)]">
+                THE EVENT HORIZON
+              </h2>
+              <p className="text-purple-100/80 font-mono tracking-widest md:tracking-[0.6em] uppercase text-xs md:text-sm leading-relaxed">
+                THEY ARE BEYOND THE STARS. THE COUNCIL APPROACHES.
+              </p>
+            </div>
 
-      </motion.div>
+            <div className="flex justify-center items-center gap-2 sm:gap-4 md:gap-12 flex-nowrap">
+              <AnimatedCounter value={timeLeft3.days} label="Days" />
+              <div className="text-3xl md:text-7xl font-black font-heading text-purple-400/60 self-start mt-2 md:mt-4 animate-pulse drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">:</div>
+              <AnimatedCounter value={timeLeft3.hours} label="Hours" />
+              <div className="text-3xl md:text-7xl font-black font-heading text-purple-400/60 self-start mt-2 md:mt-4 animate-pulse drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">:</div>
+              <AnimatedCounter value={timeLeft3.minutes} label="Mins" />
+              <div className="text-3xl md:text-7xl font-black font-heading text-purple-400/60 self-start mt-2 md:mt-4 animate-pulse drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">:</div>
+              <AnimatedCounter value={timeLeft3.seconds} label="Secs" />
+            </div>
+          </motion.div>
+        ) : (
+          <FinishedState
+            title="THE SINGULARITY"
+            subtitle='"WE CROSSED THE EVENT HORIZON." THE COUNCIL IS HERE.'
+            titleClass="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-indigo-200 drop-shadow-[0_0_25px_rgba(255,255,255,0.4)]"
+          />
+        )}
+
+      </div>
     </section>
   );
 }
 
-function ConfettiWrapper() {
-  const { width, height } = useWindowSize();
+function FinishedState({ title, subtitle, titleClass }) {
   return (
-    <div className="fixed inset-0 pointer-events-none z-50">
-      <Confetti width={width} height={height} recycle={false} numberOfPieces={1000} gravity={0.2} />
-    </div>
-  );
-}
-
-function FinishedState({ title, subtitle, colorClass }) {
-  return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, scale: 0.8, y: 30 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.8, type: "spring", bounce: 0.5 }}
-      className="flex flex-col items-start justify-center py-6"
+      transition={{ duration: 1.2, type: "spring", bounce: 0.4 }}
+      className="flex flex-col items-center justify-center py-6 text-center max-w-5xl px-4"
     >
-      <h3 className={`text-5xl md:text-7xl font-heading font-black mb-4 ${colorClass} text-glow tracking-tight`}>
+      <h3 className={`text-4xl md:text-7xl lg:text-8xl font-heading font-black mb-8 uppercase tracking-widest md:tracking-[0.2em] ${titleClass}`}>
         {title}
       </h3>
-      <p className="text-zinc-300 font-sans text-xl md:text-2xl font-medium">
+      <p className="text-zinc-300 font-mono text-base md:text-xl font-light tracking-widest md:tracking-[0.4em] leading-loose uppercase">
         {subtitle}
       </p>
     </motion.div>
   );
 }
 
-function calculateTimeLeft(targetDate) {
+export function calculateTimeLeft(targetDate) {
   const difference = targetDate - new Date().getTime();
   let timeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0, isFinished: false };
 
