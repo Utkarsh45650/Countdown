@@ -1,5 +1,6 @@
 import Countdowns from './components/Countdowns';
 import LaunchInfo from './components/LaunchInfo';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -13,9 +14,10 @@ function App() {
         />
       </div>
 
-      <main className="flex-1 flex flex-col relative z-10 w-full">
+      <main className="flex-1 flex flex-col relative z-10 w-full min-h-screen">
         <Countdowns />
         <LaunchInfo />
+        <Footer />
       </main>
     </div>
   );
