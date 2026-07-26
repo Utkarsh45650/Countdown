@@ -60,10 +60,10 @@ export default function Countdowns() {
           >
             <div className="text-center space-y-6 max-w-4xl px-4">
               <h2 className="text-3xl sm:text-4xl md:text-6xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-zinc-200 to-amber-200 uppercase tracking-widest md:tracking-[0.3em] drop-shadow-[0_0_15px_rgba(34,211,238,0.6)]">
-                THE NEXUS
+                THE STELLAR COUNCIL
               </h2>
               <p className="text-cyan-100/80 font-mono tracking-widest md:tracking-[0.6em] uppercase text-xs md:text-sm leading-relaxed">
-                TRANSMITTING DATA ACROSS SPACE. THE NEXUS IS ABOUT TO GO LIVE.
+                THEY ARE BEYOND THE STARS. THE STELLAR COUNCIL APPROACHES.
               </p>
             </div>
 
@@ -87,10 +87,10 @@ export default function Countdowns() {
           >
             <div className="text-center space-y-6 max-w-4xl px-4">
               <h2 className="text-3xl sm:text-4xl md:text-6xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-zinc-200 to-indigo-300 uppercase tracking-widest md:tracking-[0.3em] drop-shadow-[0_0_15px_rgba(168,85,247,0.6)]">
-                THE STELLAR COUNCIL
+                THE NEXUS
               </h2>
               <p className="text-purple-100/80 font-mono tracking-widest md:tracking-[0.6em] uppercase text-xs md:text-sm leading-relaxed">
-                THEY ARE BEYOND THE STARS. THE STELLAR COUNCIL APPROACHES.
+                TRANSMITTING DATA ACROSS SPACE. THE NEXUS IS ABOUT TO GO LIVE.
               </p>
             </div>
 
@@ -106,8 +106,8 @@ export default function Countdowns() {
           </motion.div>
         ) : (
           <FinishedState
-            title="THE STELLAR COUNCIL"
-            subtitle='"THEY ARE HERE." THE STELLAR COUNCIL HAVE ARRIVED.'
+            title="THE NEXUS"
+            subtitle='"THE SIGNAL IS STABLE." THE NEXUS HAS COME ONLINE.'
             titleClass="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-indigo-200 drop-shadow-[0_0_25px_rgba(255,255,255,0.4)]"
           />
         )}

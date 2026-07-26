@@ -80,15 +80,15 @@ export default function LaunchInfo() {
             className="w-full max-w-5xl flex flex-col items-center justify-center py-6 text-center px-4"
           >
             <h3 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-black mb-4 md:mb-8 text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-white to-cyan-200 tracking-tight drop-shadow-[0_0_20px_rgba(34,211,238,0.3)] uppercase">
-              The Portal is Open
+              The Architects Emerge
             </h3>
             <p className="text-zinc-300 font-sans text-lg md:text-3xl font-medium tracking-widest md:tracking-[0.3em] uppercase">
-              THE ARCHIVES ARE NOW LIVE.
+              THEY WHO COMMAND THE GRAVITY.
             </p>
             <p className="text-center text-zinc-400 mt-8 md:mt-16 font-sans text-base md:text-xl font-light max-w-3xl leading-relaxed uppercase tracking-wider md:tracking-widest">
-              "A new dimension of knowledge has been unlocked."
+              "Mankind was born on Earth, but we were never meant to die here."
               <br /><br />
-              Step through the digital wormhole and explore the archives.
+              The Architects have arrived to guide us into the unknown. The final ascent begins now.
             </p>
           </motion.div>
         </section>
@@ -105,15 +105,15 @@ export default function LaunchInfo() {
             className="w-full max-w-5xl flex flex-col items-center justify-center py-6 text-center px-4"
           >
             <h3 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-black mb-4 md:mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-indigo-100 to-purple-300 tracking-tight drop-shadow-[0_0_20px_rgba(168,85,247,0.3)] uppercase">
-              The Architects Emerge
+              The Portal is Open
             </h3>
             <p className="text-zinc-300 font-sans text-lg md:text-3xl font-medium tracking-widest md:tracking-[0.3em] uppercase">
-              THEY WHO COMMAND THE GRAVITY.
+              THE ARCHIVES ARE NOW LIVE.
             </p>
             <p className="text-center text-zinc-400 mt-8 md:mt-16 font-sans text-base md:text-xl font-light max-w-3xl leading-relaxed uppercase tracking-wider md:tracking-widest">
-              "Mankind was born on Earth, but we were never meant to die here."
+              "A new dimension of knowledge has been unlocked."
               <br /><br />
-              The Architects have arrived to guide us into the unknown. The final ascent begins now.
+              Step through the digital wormhole and explore the archives.
             </p>
           </motion.div>
         </section>
