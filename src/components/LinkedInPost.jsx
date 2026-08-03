@@ -6,7 +6,7 @@ export default function LinkedInPost() {
   const handlePostClick = (e) => {
     // Prevent default action if they clicked a specific interactive element
     // but redirect to linkedin.
-    window.open('https://www.linkedin.com/', '_blank');
+    window.open('https://lnkd.in/p/grt6qV7p', '_blank');
   };
 
   return (
