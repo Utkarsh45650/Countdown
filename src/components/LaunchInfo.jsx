@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { PRIMARY_DATE, SECONDARY_DATE, TERTIARY_DATE } from '../constants';
 import { calculateTimeLeft } from './Countdowns';
 import { FaInstagram, FaLinkedinIn } from 'react-icons/fa6';
+import LinkedInPost from './LinkedInPost';
 
 export default function LaunchInfo() {
   const [timeLeft1, setTimeLeft1] = useState(calculateTimeLeft(PRIMARY_DATE));
@@ -90,6 +91,9 @@ export default function LaunchInfo() {
               <br /><br />
               The Architects have arrived to guide us into the unknown. The final ascent begins now.
             </p>
+            <div className="mt-16 w-full flex justify-center">
+              <LinkedInPost />
+            </div>
           </motion.div>
         </section>
       )}
